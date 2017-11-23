@@ -24,7 +24,7 @@ public class ArithmeticsIT extends Sql4EsBase {
 	public void singleComputations() throws Exception{
 		createIndexTypeWithDocs(index, type, true, 10,2);
 		
-		Statement st = DriverManager.getConnection("jdbc:sql4es://localhost:9300/"+index+"?test").createStatement();
+		Statement st = DriverManager.getConnection("jdbc:csql://localhost:9300/"+index+"?test").createStatement();
 		ResultSet rs = st.executeQuery("select intNum*10 from "+type);
 		ResultSetMetaData rsm = rs.getMetaData();
 		assertEquals(Types.FLOAT, rsm.getColumnType(1));
@@ -98,7 +98,7 @@ public class ArithmeticsIT extends Sql4EsBase {
 	public void combinedComputations() throws Exception{
 		createIndexTypeWithDocs(index, type, true, 10, 2);
 		
-		Statement st = DriverManager.getConnection("jdbc:sql4es://localhost:9300/"+index+"?test").createStatement();
+		Statement st = DriverManager.getConnection("jdbc:csql://localhost:9300/"+index+"?test").createStatement();
 		ResultSet rs = st.executeQuery("select intNum/shortNum as calc from "+type+" where intNum > 0");
 		ResultSetMetaData rsm = rs.getMetaData();
 		assertEquals(Types.FLOAT, rsm.getColumnType(1));
@@ -151,7 +151,7 @@ public class ArithmeticsIT extends Sql4EsBase {
 	public void offsetComputations() throws Exception{
 		createIndexTypeWithDocs(index, type, true, 10,2);
 		
-		Statement st = DriverManager.getConnection("jdbc:sql4es://localhost:9300/"+index+"?test").createStatement();
+		Statement st = DriverManager.getConnection("jdbc:csql://localhost:9300/"+index+"?test").createStatement();
 		ResultSet rs = st.executeQuery("select intNum/shortNum[-1], intNum from "+type+" where intNum > 0 order by intNum asc");
 		ResultSetMetaData rsm = rs.getMetaData();
 		assertEquals(Types.FLOAT, rsm.getColumnType(1));

@@ -47,7 +47,7 @@
 		<dependency>
 			<groupId>com.facebook.presto</groupId>
 			<artifactId>presto-parser</artifactId>
-			<version>0.180</version>
+			<version>0.128</version>
 		</dependency>
 		<dependency>
 			<groupId>org.elasticsearch</groupId>

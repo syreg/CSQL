@@ -25,14 +25,14 @@ public class DatabaseMetadataIT extends Sql4EsBase {
 
 	@Test
 	public void testReadingProperties() throws Exception{
-		Driver driver = DriverManager.getDriver("jdbc:sql4es://localhost:9300/index");
-		DriverPropertyInfo[] info = driver.getPropertyInfo("jdbc:sql4es://localhost:9300/index", null);
+		Driver driver = DriverManager.getDriver("jdbc:csql://localhost:9300/index");
+		DriverPropertyInfo[] info = driver.getPropertyInfo("jdbc:csql://localhost:9300/index", null);
 		assertEquals(9, info.length);
 		for(DriverPropertyInfo i : info){
 			if(i.name.equals("query.timeout.ms")) assertEquals("10000", i.value);
 		}
 		
-		info = driver.getPropertyInfo("jdbc:sql4es://localhost:9300/index?query.cache.table=tmp", null);
+		info = driver.getPropertyInfo("jdbc:csql://localhost:9300/index?query.cache.table=tmp", null);
 		assertEquals(9, info.length);
 		for(DriverPropertyInfo i : info){
 			if(i.name.equals("query.cache.table")) assertEquals("tmp", i.value);
@@ -44,7 +44,7 @@ public class DatabaseMetadataIT extends Sql4EsBase {
 		createIndex("index1");
 		createIndex("index2");
 		refresh();
-		Connection conn = DriverManager.getConnection("jdbc:sql4es://localhost:9300/index?test");
+		Connection conn = DriverManager.getConnection("jdbc:csql://localhost:9300/index?test");
 		DatabaseMetaData md = conn.getMetaData();
 		ResultSet rs = md.getSchemas();
 		int count = 0;
@@ -58,7 +58,7 @@ public class DatabaseMetadataIT extends Sql4EsBase {
 	@Test
 	public void testReadingTables() throws Exception{
 		createIndexTypeWithDocs("index1", "mytype", true, -1);
-		Connection conn = DriverManager.getConnection("jdbc:sql4es://localhost:9300/index?test");
+		Connection conn = DriverManager.getConnection("jdbc:csql://localhost:9300/index?test");
 		DatabaseMetaData md = conn.getMetaData();
 		ResultSet rs = md.getTables(null, "index1", null, null);
 		int count = 0;
@@ -71,7 +71,7 @@ public class DatabaseMetadataIT extends Sql4EsBase {
 	@Test
 	public void testReadingColumnsFlat() throws Exception{
 		createIndexTypeWithDocs("index1", "mytype", true, -1);
-		Connection conn = DriverManager.getConnection("jdbc:sql4es://localhost:9300/index?test");
+		Connection conn = DriverManager.getConnection("jdbc:csql://localhost:9300/index?test");
 		DatabaseMetaData md = conn.getMetaData();
 		
 		ResultSet rs = md.getColumns(null, "index1", null, null);
@@ -95,7 +95,7 @@ public class DatabaseMetadataIT extends Sql4EsBase {
 		String index = "index2";
 		String type = "type";
 		createIndexTypeWithDocs(index, type, true, 1 , 2);
-		Connection conn = DriverManager.getConnection("jdbc:sql4es://localhost:9300/"+index+"?test");
+		Connection conn = DriverManager.getConnection("jdbc:csql://localhost:9300/"+index+"?test");
 		DatabaseMetaData md = conn.getMetaData();
 		ResultSet rs = md.getColumns(null, "index2", null, null);
 		int count = 0;
