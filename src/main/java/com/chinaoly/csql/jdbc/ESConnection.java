@@ -36,8 +36,8 @@ import org.elasticsearch.test.ESIntegTestCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.chinaoly.csql.jdbc.ESDatabaseMetaData;
-import com.chinaoly.csql.jdbc.model.Heading;
+import com.chinaoly.csql.ESDatabaseMetaData;
+import com.chinaoly.csql.model.Heading;
 import com.chinaoly.csql.jdbc.model.Utils;
 
 /**

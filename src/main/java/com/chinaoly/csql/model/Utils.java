@@ -16,7 +16,7 @@ public class Utils {
 	public static final int DRIVER_MINOR_VERSION = 5;
 	
 	// connection defaults
-	public static final String PREFIX = "jdbc:sql4es:";
+	public static final String PREFIX = "jdbc:csql:";
 	public static final int PORT = 9300;
 	
 	// defaults
